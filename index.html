@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="icon" href="favicon1.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,300&display=swap"
+        rel="stylesheet">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-scrollto"></script>
+
+<body>
+    <header id="top"></header>
+    <div id="app">
+        <a href="#" v-scroll-to="'#bottom'" class="return-bottom"><i class="fas fa-angle-double-down"></i></a>
+        <a href="#" v-scroll-to="'#top'" class="return-top"><i class="fas fa-angle-double-up"></i></a>
+        <div class="main-wrapepr">
+            <div class="title-container">
+                <div class="card">
+                    <transition appear name="langicon1">
+                    <div class="langicon">
+                            <img src="https://raw.githubusercontent.com/hato2023/air/main/html.png">
+                            <img src="https://raw.githubusercontent.com/hato2023/air/main/sass.png">
+                            <img src="https://raw.githubusercontent.com/hato2023/air/main/javascript.png">
+                            <img src="https://raw.githubusercontent.com/hato2023/air/main/vue.png">
+                            <img src="https://raw.githubusercontent.com/hato2023/air/main/php.png">
+                            <img src="https://raw.githubusercontent.com/hato2023/air/main/photoshop.png">
+                            <img src="https://raw.githubusercontent.com/hato2023/air/main/aftereffects.png">
+                    </div>
+                    </transition>
+                    <div class="members">
+                        <div class="member glitch" v-bind:class="{ active: memberFilter === 'design' }"
+                            v-on:click="setMember('design')">Design</div>
+                        <div class="member page" v-bind:class="{ active: memberFilter === 'htmlcss' }"
+                            v-on:click="setMember('htmlcss')">&#12296;Code&#12297;</div>
+                        <div class="member design" v-bind:class="{ active: memberFilter === 'paper' }"
+                            v-on:click="setMember('paper')">Paper</div>
+                        <div class="member movie" v-bind:class="{ active: memberFilter === 'movie' }"
+                            v-on:click="setMember('movie')">Motion</div>
+                    </div>
+                    <div class="name">
+                        <transition appear name="name">
+                            <h1>Yuichiro<br>Hato</h1>
+                        </transition>
+                        <transition appear name="nameinfo">
+                            <p><span style="font-size: 12px;">Date of Birth:</span> MAR 17,1994</p>
+                        </transition>
+                        <transition appear name="nameinfo">
+                            <p>
+                                <a target="_blank" href="https://github.com/hato2023"><i
+                                        class="fab fa-github fa-lg"></i></a> yhato0317@gmail.com
+                            </p>
+                        </transition>
+                    </div>
+                </div>
+            </div>
+
+            <transition-group class="projects" name="projects">
+                <div class="project" v-if="memberFilter === project.category || memberFilter === 'all'"
+                    v-bind:key="project.title" v-for="project in projects">
+                    <div class="project-image-wrapper">
+                        <a v-bind:href="project.url" target="_blank">
+                            <img id="test" class="project-image" v-bind:src="project.image">
+                            <div class="language">
+                                <img v-bind:src="project.language">
+                                <img v-bind:src="project.language2">
+                                <img v-bind:src="project.language3">
+                                <img v-bind:src="project.language4">
+                            </div>
+                            <div class="project-title">
+                                {{project.title}}
+                            </div>
+                    </div>
+                    <div class="gradient-overlay"></div>
+                    </a>
+                </div>
+        </div>
+        </transition-group>
+    </div>
+    <fotter id="bottom"></fotter>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                memberFilter: 'none',//初期表示
+                projects: [
+                    { title: "レンタルスペース受付票", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/reception.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/reception.webp", category: 'paper' },
+                    { title: "学生プラン パンフレット(表)", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/学生1.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/学生1.webp", category: 'paper' },
+                    { title: "学生プラン パンフレット（裏）", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/学生2.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/学生2.webp", category: 'paper' },
+                    { title: "レンタルスペース案内", language: "photoshop.png", url: "space.jpg", image: "https://raw.githubusercontent.com/hato2023/air/main/space.webp", category: 'paper' },
+                    { title: "ロードバイク特集ページ", language: "html.png", language2: "sass.png", url: "https://online.ysroad.co.jp/shop/pages/road-bestbuy.aspx", image: "https://raw.githubusercontent.com/hato2023/air/main/road.webp", category: 'htmlcss' },
+                    { title: "MAVICブランドページ", language: "html.png", language2: "sass.png", language3: "javascript.png", url: "https://online.ysroad.co.jp/shop/e/e21mavic/", image: "https://raw.githubusercontent.com/hato2023/air/main/page_mavic.webp", category: 'htmlcss' },
+                    { title: "ツール・ド・フランスLP", language: "html.png", language2: "sass.png", url: "https://online.ysroad.co.jp/shop/pages/tourdefrance.aspx", image: "https://raw.githubusercontent.com/hato2023/air/main/page_tour.webp", category: 'htmlcss' },
+                    { title: "メールマガジン作成", language: "html.png", language2: "sass.png", url: "https://online.ysroad.co.jp/shop/pages/mailmagagine_220123.aspx", image: "https://raw.githubusercontent.com/hato2023/air/main/mailmagagine.webp", category: 'htmlcss' },
+                    { title: "tamimoonLP", language: "html.png", language2: "sass.png", language3: "javascript.png", language4: "photoshop.png", url: "https://www.atmos-pink.com/lp/tamimoon", image: "https://raw.githubusercontent.com/hato2023/air/main/tamimoon.webp", category: 'htmlcss' },
+                    { title: "スタイリングLP", language: "html.png", language2: "sass.png", language3: "javascript.png", language4: "photoshop.png", url: "https://www.atmos-pink.com/lp/by_color", image: "https://raw.githubusercontent.com/hato2023/air/main/color.webp", category: 'htmlcss' },
+                    { title: "アウター特集", language: "html.png", language2: "sass.png", language3: "javascript.png", language4: "photoshop.png", url: "https://www.atmos-pink.com/lp/xmas-outerlook", image: "https://raw.githubusercontent.com/hato2023/air/main/outer.webp", category: 'htmlcss' },
+                    { title: "NIKE抽選ページ", language: "html.png", language2: "sass.png", language4: "photoshop.png", url: "https://www.atmos-pink.com/lp/nike-air-jordan-11-retro-lp", image: "nike.webp", category: 'htmlcss' },
+                    { title: "ブーツ特集", language: "html.png", language2: "sass.png", language4: "photoshop.png", url: "https://www.atmos-pink.com/lp/boots_lp_22", image: "boots.webp", category: 'htmlcss' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/brand.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/brand.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/bnr_kazze.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/bnr_kazze.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/bnr_horidashimono.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/bnr_kazze.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/bnr_kato24k.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/bnr_kato24k.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/bnr_noza.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/bnr_noza.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/bnr_jtu.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/bnr_jtu.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/xmas.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/xmas.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/knit.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/knit.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/ugg.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/ugg.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/styling.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/styling.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/annasui.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/annasui.webp", category: 'design' },
+                    { title: "", language: "photoshop.png", url: "https://raw.githubusercontent.com/hato2023/air/main/nyc.webp", image: "https://raw.githubusercontent.com/hato2023/air/main/nyc.webp", category: 'design' },
+                    { title: "", language: "aftereffects.png", url: "https://drive.google.com/file/d/1mWLzjV8Yyp4Ose1EOuby4gfSeO9Hdrf9/view?usp=sharing", image: "https://raw.githubusercontent.com/hato2023/air/main/movie1.webp", category: 'movie' },
+                    { title: "", language: "aftereffects.png", url: "https://drive.google.com/file/d/1NFntVha5y5N2JX7FmPkTnsY0x7oxkAF1/view?usp=sharing", image: "https://raw.githubusercontent.com/hato2023/air/main/movie2.webp", category: 'movie' },
+                    { title: "", language: "aftereffects.png", url: "https://raw.githubusercontent.com/hato2023/air/main/nike.gif", image: "https://raw.githubusercontent.com/hato2023/air/main/nike.gif", category: 'movie' },
+                    { title: "", language: "aftereffects.png", url: "https://raw.githubusercontent.com/hato2023/air/main/mlb.gif", image: "https://raw.githubusercontent.com/hato2023/air/main/mlb.gif", category: 'movie' },
+                ]
+            },
+            methods: {
+                setMember: function (member) {
+                    this.memberFilter = member;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
